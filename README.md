@@ -1,5 +1,6 @@
 # centreon_translate_commands
 
+IN YOUR CENTREON CENTRAL SERVER :
 This script translate for each service the command used. <br>
 The command is written in the field comment of each service (you need to use the option --user and --password)
 
