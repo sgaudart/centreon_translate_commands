@@ -12,7 +12,7 @@ The command is written in the field comment of each service (you need to use the
   - CLAPI module
 
 ## Options
-options : [--user & --password] : CLAPI user if you want to WRITE the command into the service's comment
-          [--verbose]
-          [--serviceid] : run only for this service_id
+options : [--user & --password] : CLAPI user if you want to WRITE the command into the service's comment <br>
+          [--verbose] <br>
+          [--serviceid] : run only for this service_id <br>
 
