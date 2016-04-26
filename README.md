@@ -1,2 +1,4 @@
 # centreon_translate_commands
-[CENTREON REQUIRED] translate command for each service and store this into the comment's field
+
+This script translate for each service the command used.
+The command is written in the field comment of each service.
