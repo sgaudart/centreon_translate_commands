@@ -20,7 +20,7 @@ The command is written in the field comment of each service (you need to use the
 
 ## Examples 
 
-Pour voir une commande pour un service particulier (il faut connaitre son ID) :
+Show a command for a specific service (your must know the ID service, for example 18218) :
 ```erb
 # ./centreon_translate_commands.pl --service 18218
 [Wed Apr 27 12:02:29 2016] [INFO] Translation beginning...
