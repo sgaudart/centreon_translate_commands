@@ -11,6 +11,10 @@ The command is written in the field comment of each service (you need to use the
   - mysql client
   - CLAPI module
 
+## Dev Environment
+
+Centreon 2.5.4
+
 ## Options
 ```erb
 [--user and --password] : CLAPI user if you want to WRITE the command into the service's comment
