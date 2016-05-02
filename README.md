@@ -11,7 +11,7 @@ The command is written in the field comment of each service (you need to use the
   - mysql client
   - CLAPI module
 
-## Dev Environment
+## Tested with...
 
 Centreon 2.5.4
 
