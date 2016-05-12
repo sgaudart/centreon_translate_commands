@@ -2,12 +2,12 @@
 #======================================================================
 # Auteur : sgaudart@capensis.fr
 # Date   : 22/03/2016
-# But    : [CENTREON REQUIRED] This script translate for each service the command used.
+# But    : [CENTREON REQUIRED] This script translate the command used for each service.
 #          The command is written in the field comment of each service.
 # INPUT : 
-#          
+#          --user + --password : information for CLAPI commands
 # OUTPUT :
-#          CLAPI executed for the action of written in the field comment.
+#          CLAPI commands (command written in the field comment)
 #
 #======================================================================
 #   Date      Version    Auteur       Commentaires
@@ -15,6 +15,7 @@
 # 29/03/2016  2          SGA          add option --serviceid
 # 05/04/2016  3          SGA          add option --user and --password
 # 08/04/2016  4          SGA          better algo to get a correct services list
+# 11/05/2016  5          SGA          enhancement for the sql request for command
 #======================================================================
 
 use strict;
@@ -139,11 +140,11 @@ close COMMENT;
 $sqlprefix = "mysql --batch -h $hostCentstorage -u $user -p$password -D $dbcstg -e"; # use centreon_storage database
 if ($serviceid eq "")
 {
-	$sqlrequest = "SELECT hosts.name,services.description,services.service_id,services.command_line FROM services,hosts WHERE hosts.host_id=services.host_id AND hosts.enabled=1 ORDER BY service_id";
+	$sqlrequest = "SELECT hosts.name,services.description,services.service_id,services.command_line FROM services,hosts WHERE hosts.host_id=services.host_id AND hosts.enabled=1 AND services.enabled=1 ORDER BY service_id";
 }
 else
 {
-	$sqlrequest = "SELECT hosts.name,services.description,services.service_id,services.command_line FROM services,hosts WHERE hosts.host_id=services.host_id AND hosts.enabled=1 AND service_id=$serviceid ORDER BY service_id";
+	$sqlrequest = "SELECT hosts.name,services.description,services.service_id,services.command_line FROM services,hosts WHERE hosts.host_id=services.host_id AND hosts.enabled=1 AND services.enabled=1 AND service_id=$serviceid ORDER BY service_id";
 }
 
 ###############################
@@ -183,7 +184,7 @@ while (<COMMAND>)
 		{
 			# WE STORE THE COMMAND INTO THE COMMENT'S SERVICE
 			$command{$service_id} =~ s/\"/\\\"/g; # substitution des chr " => \"
-			LogMessage("[INFO] store command into the comment's field");
+			LogMessage("[INFO] write command into the comment's field");
 			LaunchAndLog("centreon -u $clapiuser -p $clapipass -o SERVICE -a setparam -v \"$host_name;$service_descr;comment;$command{$service_id}\"");
 		}
 	}
