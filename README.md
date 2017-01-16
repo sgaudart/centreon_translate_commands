@@ -13,7 +13,7 @@ The command is written in the field comment of each service (you need to use the
 
 ## Tested with...
 
-Centreon 2.5.4
+Centreon 2.5.4 et 2.6.6
 
 ## Options
 ```erb
